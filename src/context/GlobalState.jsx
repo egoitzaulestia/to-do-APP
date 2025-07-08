@@ -4,6 +4,7 @@ import AppReducer from "./AppReducer";
 
 const initialState = {
   tasks: [],
+  task: {},
 };
 
 export const GlobalContext = createContext(initialState);
@@ -44,6 +45,19 @@ export const GlobalProvider = ({ children }) => {
       console.error("addTask error:", err);
     }
   };
+
+  const getTask = async (_id) => {
+    try {
+      const res = await axios.get(`http://localhost:3000/tasks/${_id}`);
+
+      dispatch({
+        type: "GET_TASK",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log("getTask Error:", err);
+    }
+  };
   return (
     <GlobalContext.Provider
       value={{
@@ -51,6 +65,7 @@ export const GlobalProvider = ({ children }) => {
         getTasks,
         deleteTask,
         addTask,
+        getTask,
       }}
     >
       {children}
