@@ -1,5 +1,11 @@
+import TaskDetail from "../taks-detail/TaskDetail";
+
 const TaskList = () => {
-  return <div>TaskList</div>;
+  return (
+    <>
+      <TaskDetail />
+    </>
+  );
 };
 
 export default TaskList;
