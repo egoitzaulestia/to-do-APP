@@ -15,6 +15,12 @@ const tasks = (state, action) => {
         ...state,
         tasks: [...state.tasks, action.payload],
       };
+    case "GET_TASK":
+      return {
+        ...state,
+        task: action.payload,
+      };
+
     default:
       return state;
   }

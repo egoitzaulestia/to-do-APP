@@ -48,7 +48,7 @@ export const GlobalProvider = ({ children }) => {
 
   const getTask = async (_id) => {
     try {
-      const res = await axios.get(`http://localhost:3000/tasks/${_id}`);
+      const res = await axios.get(`http://localhost:3000/tasks/id/${_id}`);
 
       dispatch({
         type: "GET_TASK",
@@ -58,14 +58,25 @@ export const GlobalProvider = ({ children }) => {
       console.log("getTask Error:", err);
     }
   };
+
+  const editTask = async (_id, task) => {
+    try {
+      await axios.put(`http//localhost:3000/tasks/${_id}`, task);
+    } catch (err) {
+      console.error("editTask error:", err);
+    }
+  };
+
   return (
     <GlobalContext.Provider
       value={{
         tasks: state.tasks,
+        task: state.task,
         getTasks,
         deleteTask,
         addTask,
         getTask,
+        editTask,
       }}
     >
       {children}
