@@ -1,10 +1,12 @@
+import TaskList from "./components/task-list/TaskList";
+import { GlobalProvider } from "./context/GlobalState";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <h1>To Do APP</h1>
-    </>
+    <GlobalProvider>
+      <TaskList />
+    </GlobalProvider>
   );
 }
 
