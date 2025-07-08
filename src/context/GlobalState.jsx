@@ -22,7 +22,7 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteTask = async (_id) => {
     try {
-      await axios.delete(`http://localhost:3000/${_id}`);
+      await axios.delete(`http://localhost:3000/tasks/${_id}`);
       dispatch({
         type: "DELETE_TASK",
         payload: _id,
@@ -31,12 +31,26 @@ export const GlobalProvider = ({ children }) => {
       console.error("deleteTask error:", err);
     }
   };
+
+  const addTask = async (task) => {
+    try {
+      const res = await axios.post("http://localhost:3000/tasks/create", task);
+
+      dispatch({
+        type: "ADD_TASK",
+        payload: res.data.task,
+      });
+    } catch (err) {
+      console.error("addTask error:", err);
+    }
+  };
   return (
     <GlobalContext.Provider
       value={{
         tasks: state.tasks,
         getTasks,
         deleteTask,
+        addTask,
       }}
     >
       {children}

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 
 const TaskDetail = () => {
-  const { tasks, getTasks } = useContext(GlobalContext);
+  const { tasks, getTasks, deleteTask } = useContext(GlobalContext);
 
   useEffect(() => {
     getTasks();
@@ -13,6 +13,7 @@ const TaskDetail = () => {
     tasks.map((task) => (
       <div className="task" key={task._id}>
         <h2>{task.title}</h2>
+        <button onClick={() => deleteTask(task._id)}>X</button>
       </div>
     ))
   );
