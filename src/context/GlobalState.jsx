@@ -61,7 +61,7 @@ export const GlobalProvider = ({ children }) => {
 
   const editTask = async (_id, task) => {
     try {
-      await axios.put(`http//localhost:3000/tasks/${_id}`, task);
+      await axios.put(`http://localhost:3000/tasks/${_id}`, task);
     } catch (err) {
       console.error("editTask error:", err);
     }

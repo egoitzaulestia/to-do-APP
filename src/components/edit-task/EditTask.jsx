@@ -1,10 +1,11 @@
-import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalState";
 
 const EditTask = () => {
+  const navigate = useNavigate();
   const { _id } = useParams();
-  const { task, getTask } = useContext(GlobalContext);
+  const { task, getTask, editTask } = useContext(GlobalContext);
   const [title, setTitle] = useState("");
 
   useEffect(() => {
@@ -15,11 +16,18 @@ const EditTask = () => {
     setTitle(task.title);
   }, [task.title]);
 
-  console.log("id", _id);
-  console.log("task", task.task);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    editTask(task._id, { title });
 
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  };
+
+  console.log("task", task);
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         onChange={(e) => setTitle(e.target.value)}
