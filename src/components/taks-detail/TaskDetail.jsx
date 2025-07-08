@@ -10,11 +10,11 @@ const TaskDetail = () => {
 
   return (
     tasks &&
-    tasks.map((task) => {
+    tasks.map((task) => (
       <div className="task" key={task._id}>
         <h2>{task.title}</h2>
-      </div>;
-    })
+      </div>
+    ))
   );
 };
 
