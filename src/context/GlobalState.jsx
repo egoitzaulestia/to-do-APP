@@ -19,11 +19,24 @@ export const GlobalProvider = ({ children }) => {
       payload: res.data.tasks,
     });
   };
+
+  const deleteTask = async (_id) => {
+    try {
+      await axios.delete(`http://localhost:3000/${_id}`);
+      dispatch({
+        type: "DELETE_TASK",
+        payload: _id,
+      });
+    } catch (err) {
+      console.error("deleteTask error:", err);
+    }
+  };
   return (
     <GlobalContext.Provider
       value={{
         tasks: state.tasks,
         getTasks,
+        deleteTask,
       }}
     >
       {children}
