@@ -10,6 +10,7 @@ const AddTask = () => {
     console.log("title", title);
     addTask({ title });
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
