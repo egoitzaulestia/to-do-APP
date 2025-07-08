@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalState";
+import { Link } from "react-router-dom";
 
 const TaskDetail = () => {
   const { tasks, getTasks, deleteTask } = useContext(GlobalContext);
@@ -13,6 +14,8 @@ const TaskDetail = () => {
     tasks.map((task) => (
       <div className="task" key={task._id}>
         <h2>{task.title}</h2>
+
+        <Link to={`/task/${task._id}`}>Edit</Link>
         <button onClick={() => deleteTask(task._id)}>X</button>
       </div>
     ))

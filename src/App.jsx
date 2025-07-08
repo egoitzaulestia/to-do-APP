@@ -12,7 +12,7 @@ function App() {
       <GlobalProvider>
         <Routes>
           <Route path="/" element={<TaskList />} />
-          <Route path="/:_id" element={<EditTask />} />
+          <Route path="task/:_id" element={<EditTask />} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
